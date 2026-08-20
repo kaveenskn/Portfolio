@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="./images/portfolio.png" alt="Portfolio Website" width="100%">
+</p>
+
+
+
+
 
 # Kaveen | Creative Developer Portfolio
 
