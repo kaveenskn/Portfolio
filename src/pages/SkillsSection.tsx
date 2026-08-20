@@ -6,7 +6,7 @@ export const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="relative min-h-screen w-full py-20 md:py-24 overflow-visible flex items-center"
+      className="relative min-h-screen md:min-h-[120vh] w-full py-20 md:py-24 overflow-visible flex items-center"
       style={{
         backgroundImage: `url(${aboutBg})`,
         backgroundSize: 'cover',

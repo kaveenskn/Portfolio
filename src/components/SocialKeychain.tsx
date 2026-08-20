@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaLinkedinIn, FaGithub, FaEnvelope } from 'react-icons/fa6';
+import type { IconType } from 'react-icons';
 import gsap from 'gsap';
 
 // =========================================================================
 // CONFIGURATION: UPDATE YOUR SOCIAL MEDIA URLs AND EMAIL ADDRESS HERE
 // =========================================================================
-export const SOCIAL_LINKS = [
+const SOCIAL_LINKS = [
   { id: 'Facebook', icon: FaFacebookF, url: 'https://www.facebook.com/share/19U31jUQWa/?mibextid=wwXIfr', color: '#1877F2', length: 140, baseAngle: -38, zIndex: 10 },
   { id: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/mztr_kaveen_?igsh=cThoZHpsbzh2YXM3&utm_source=qr', color: '#E4405F', length: 190, baseAngle: -22, zIndex: 20 },
   { id: 'WhatsApp', icon: FaWhatsapp, url: 'https://wa.me/0762553381', color: '#25D366', length: 120, baseAngle: -6, zIndex: 30 },
@@ -80,7 +81,7 @@ const Chain = ({ length }: { length: number }) => {
   );
 };
 
-const SocialTag = ({ icon: Icon, color, name, url }: { icon: any, color: string, name: string, url: string }) => {
+const SocialTag = ({ icon: Icon, color, name, url }: { icon: IconType, color: string, name: string, url: string }) => {
   const tagRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -172,9 +173,12 @@ export default function SocialKeychain() {
   const idleRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    const idleElements = idleRefs.current;
+    const inertiaElements = inertiaRefs.current;
+
     // 1. Idle Swinging Animation
     SOCIAL_LINKS.forEach((_, i) => {
-      const idleEl = idleRefs.current[i];
+      const idleEl = idleElements[i];
       if (idleEl) {
         const duration = 2 + Math.random() * 1.5;
         const delay = Math.random() * -2;
@@ -198,7 +202,7 @@ export default function SocialKeychain() {
       const { movementX, movementY } = e;
       
       if (Math.abs(movementX) > 1 || Math.abs(movementY) > 1) {
-        inertiaRefs.current.forEach((el, i) => {
+        inertiaElements.forEach((el, i) => {
           if (!el) return;
           
           const multiplier = SOCIAL_LINKS[i].length / 100;
@@ -238,15 +242,15 @@ export default function SocialKeychain() {
     if (!prefersReducedMotion) {
       window.addEventListener('mousemove', handleGlobalMouseMove);
     } else {
-       idleRefs.current.forEach(el => {
+      idleElements.forEach(el => {
          if (el) gsap.killTweensOf(el);
        });
     }
 
     return () => {
       window.removeEventListener('mousemove', handleGlobalMouseMove);
-      idleRefs.current.forEach(el => { if(el) gsap.killTweensOf(el) });
-      inertiaRefs.current.forEach(el => { if(el) gsap.killTweensOf(el) });
+      idleElements.forEach(el => { if(el) gsap.killTweensOf(el) });
+      inertiaElements.forEach(el => { if(el) gsap.killTweensOf(el) });
     };
   }, []);
 

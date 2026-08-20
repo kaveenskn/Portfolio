@@ -74,7 +74,7 @@ const HangingCard: React.FC<HangingCardProps> = ({ skill, startX, ropeLength, de
 
 export const HangingSkills: React.FC = () => {
   return (
-    <div className="relative w-full max-w-5xl mx-auto h-[500px] md:h-[700px] mt-10 mb-20 overflow-visible flex justify-center">
+    <div className="relative w-full max-w-5xl mx-auto h-[500px] md:h-[900px] mt-10 mb-20 overflow-visible flex justify-center">
       
       {/* Hanging Cards Layer - Ropes in front of the hand */}
       <div className="absolute top-[120px] md:top-[180px] left-0 w-full bottom-0 z-10 pointer-events-auto">

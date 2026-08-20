@@ -1,6 +1,5 @@
 import bgImage from '../assets/Bg.png';
 import SocialKeychain from '../components/SocialKeychain';
-import { FaEnvelope } from 'react-icons/fa';
 import { ScrollFlyIn } from '../components/ScrollFlyIn';
 
 export const Contact = () => {

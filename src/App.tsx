@@ -23,8 +23,8 @@ function App() {
         <Projects />
       </div>
 
-      <div className="relative z-30 h-[155vh] md:h-[175vh]">
-        <div className="sticky top-[-120px] md:top-[-160px] min-h-screen">
+      <div className="relative z-30 h-[155vh] md:h-[200vh]">
+        <div className="sticky top-[-120px] md:top-[-40px] lg:top-[-160px] min-h-screen">
           <SkillsSection />
         </div>
       </div>
